@@ -11,27 +11,27 @@ package estruturadados1;
  */
 public class Fila {
     
-    int inicio, fim, qtdElementos, qtd;
+    int inicio, fim, qtdElementos, tam;
     
     public Object[] fila;
             
-    public Fila(int qtd){
-        this.qtd=qtd;
+    public Fila(int tamanho){
+        this.tam=tamanho;
         this.inicio = 0;
         this.fim = 0;
         this.qtdElementos = 0;
-        this.fila = new Object [this.qtd];    
+        this.fila = new Object [this.tam];    
     }
     
     public boolean filaCheia(){
-        if(this.qtdElementos==this.qtd)
+        if(this.qtdElementos==this.tam)
             return true;
         else
             return false;
     }
     
     public boolean filaVazia(){
-        if(this.inicio==qtdElementos)
+        if(this.qtdElementos==0)
             return true;
         else
             return false;
@@ -41,24 +41,28 @@ public class Fila {
         if(!filaCheia()){
             this.fila[fim]=obj;
             this.qtdElementos++;
-            if(this.fim==qtd){
-                this.fim = inicio;
-            }else{
-                this.fim++;
-            }
-        }
+            this.fim++;
+            if(this.fim==tam){
+                this.fim = 0;
+            }    
+            
+        }else
+           System.out.println("Fila cheia");
     }
     
     public Object remover(){
-        if(this.filaVazia()){
-            return null;
-        }else{
+        Object temp = null;
+        if(!filaVazia()){
+            temp = this.fila[inicio];
+            this.fila[inicio] = null;
+            this.inicio++;
             this.qtdElementos--;
-            this.fim--;
-            return this.fila[fim+1];
+            if(this.inicio==this.tam){
+                this.inicio=0;
+            }
+        }else{
+            System.out.println("Fila Vazia!");
         }
-    }
-    
-    
-    
+        return temp;
+    }  
 }

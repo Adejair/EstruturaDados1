@@ -44,10 +44,21 @@ public class Fila {
             this.fim++;
             if(this.fim==tam){
                 this.fim = 0;
-            }    
-            
+            }
         }else
            System.out.println("Fila cheia");
+    }
+    
+    public void furaFila(Object obj){
+        if(!filaCheia()){
+            if(inicio==0){
+                inicio=this.tam;
+                this.fila[inicio]=obj;
+            }else{
+                inicio--;
+                this.fila[inicio]=obj;
+            }
+        }
     }
     
     public Object remover(){
